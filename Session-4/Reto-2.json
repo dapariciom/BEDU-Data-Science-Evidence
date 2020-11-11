@@ -37,3 +37,41 @@
     },
     limit: 5
    }
+
+   {
+      filter: {
+       number_of_employees: {
+        $gte: 50
+       }
+      },
+      project: {
+       name: 1,
+       number_of_employees: 1
+      }
+     }
+
+     {
+      project: {
+       name: 1,
+       number_of_employees: 1
+      },
+      sort: {
+       number_of_employees: 1
+      },
+      limit: 1
+     }
+
+     {
+      project: {
+       name: 1,
+       number_of_employees: 1
+      },
+      sort: {
+       number_of_employees: -1
+      },
+      limit: 1
+     }
+
+
+
+
