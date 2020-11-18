@@ -1,0 +1,23 @@
+   {
+    filter: {
+     house_rules: RegExp('no parties', i)
+    }
+   }
+
+   {
+    filter: {
+     house_rules: RegExp('pets allowed', i)
+    }
+   }
+
+   {
+    filter: {
+     house_rules: RegExp('no smoking', i)
+    }
+   }
+
+   {
+    filter: {
+     house_rules: RegExp('no smoking|no parties', i)
+    }
+   }
