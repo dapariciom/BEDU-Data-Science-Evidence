@@ -1,0 +1,30 @@
+¿Cuál es país con mayor número de casos? Mainland China - 2369152
+
+[{$group: {
+  _id: "$Region",
+  sum_deaths: {
+    $sum: "$Deaths"
+  },
+  sum_cases:{
+    $sum: "$Confirmed"
+  }
+}}, {$sort: {
+  sum_cases: -1
+}}]
+
+
+
+¿Cuál es el país con mayor número de muertes? Mainland China - 65325
+
+[{$group: {
+  _id: "$Region",
+  sum_deaths: {
+    $sum: "$Deaths"
+  },
+  sum_cases:{
+    $sum: "$Confirmed"
+  }
+}}, {$sort: {
+  sum_deaths: -1
+}}]
+

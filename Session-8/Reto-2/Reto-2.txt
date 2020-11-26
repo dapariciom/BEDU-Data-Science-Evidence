@@ -1,0 +1,170 @@
+¿Cuál fue el país con mayor número de muertes?	Grand Total - 3774 / Mexico - 2271
+
+[{$group: {
+  _id: "$Country",
+  sum_cases: {
+    $sum: "$Cases"
+  },
+  sum_deaths: {
+    $sum: "$Deaths"
+  }
+}}, {$sort: {
+  sum_deaths: -1
+}}]
+
+
+¿Cuál fue el país con menor número de muertes?	Japan - 0
+
+[{$group: {
+  _id: "$Country",
+  sum_cases: {
+    $sum: "$Cases"
+  },
+  sum_deaths: {
+    $sum: "$Deaths"
+  }
+}}, {$match: {
+  sum_deaths: {$gte: 0}
+}}, {$sort: {
+  sum_deaths: 1
+}}]
+
+	
+¿Cuál fue el país con el mayor número de casos? Grand Total - 785800 / USA - 340804
+
+[{$group: {
+  _id: "$Country",
+  sum_cases: {
+    $sum: "$Cases"
+  },
+  sum_deaths: {
+    $sum: "$Deaths"
+  }
+}}, {$match: {
+  sum_cases: {$gte: 0}
+}}, {$sort: {
+  sum_cases: -1
+}}]
+
+¿Cuál fue el país con el menor número de casos?	Iran, Islamic Republic - 0
+
+[{$group: {
+  _id: "$Country",
+  sum_cases: {
+    $sum: "$Cases"
+  },
+  sum_deaths: {
+    $sum: "$Deaths"
+  }
+}}, {$match: {
+  sum_cases: {$gte: 0}
+}}, {$sort: {
+  sum_cases: 1
+}}]
+
+¿Cuál fue el número de muertes promedio? 2.2694
+
+[{$match: {
+  Country: {$not: /Grand Total/},
+  Deaths: {$gte: 0},
+  Cases: {$gte: 0}
+}}, {$group: {
+  _id: null,
+  sum_deaths: {
+    $sum: "$Deaths"
+  },
+  sum_cases:{
+    $sum: "$Cases"
+  },
+  sum_count:{
+    $sum: 1
+  },
+  average_deaths:{
+    $avg: "$Deaths"
+  },
+  average_cases:{
+    $avg: "$Cases"
+  }
+}}]
+
+
+
+¿Cuál fue el número de casos promedio? 475.52
+
+[{$match: {
+  Country: {$not: /Grand Total/},
+  Deaths: {$gte: 0},
+  Cases: {$gte: 0}
+}}, {$group: {
+  _id: null,
+  sum_deaths: {
+    $sum: "$Deaths"
+  },
+  sum_cases:{
+    $sum: "$Cases"
+  },
+  sum_count:{
+    $sum: 1
+  },
+  average_deaths:{
+    $avg: "$Deaths"
+  },
+  average_cases:{
+    $avg: "$Cases"
+  }
+}}]
+
+Top 5 de países con más muertes Mexico - USA - Canada - Argentina - Chile
+
+[{$match: {
+  Country: {$not: /Grand Total/},
+  Deaths: {$gte: 0},
+  Cases: {$gte: 0}
+}}, {$group: {
+  _id: "$Country",
+  sum_deaths: {
+    $sum: "$Deaths"
+  },
+  sum_cases:{
+    $sum: "$Cases"
+  },
+  sum_count:{
+    $sum: 1
+  },
+  average_deaths:{
+    $avg: "$Deaths"
+  },
+  average_cases:{
+    $avg: "$Cases"
+  }
+}}, {$sort: {
+  sum_deaths: -1
+}}, {$limit: 5}]
+
+
+Top 5 de países con menos muertes Germany - Laos - Viet Nam - Vanuatu - Monaco
+
+[{$match: {
+  Country: {$not: /Grand Total/},
+  Deaths: {$gte: 0},
+  Cases: {$gte: 0}
+}}, {$group: {
+  _id: "$Country",
+  sum_deaths: {
+    $sum: "$Deaths"
+  },
+  sum_cases:{
+    $sum: "$Cases"
+  },
+  sum_count:{
+    $sum: 1
+  },
+  average_deaths:{
+    $avg: "$Deaths"
+  },
+  average_cases:{
+    $avg: "$Cases"
+  }
+}}, {$sort: {
+  sum_deaths: 1
+}}, {$limit: 5}]
